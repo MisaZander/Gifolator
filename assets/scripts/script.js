@@ -33,9 +33,24 @@ var Gifolator = {
                 $(image).attr("class", "gif");
                 $("#images").prepend(image);
             }
-        });
+
+            $(".gif").on("click", function() {
+                var state = $(this).attr("data-state");
+                console.log(state);
+                if(state === "still") {
+                    var data = $(this).data("animate");
+                    $(this).attr("src", data);
+                    $(this).attr("data-state", "animate");
+                  } else if (state === "animate") {
+                    var data = $(this).data("still");
+                    $(this).attr("src", data);
+                    $(this).attr("data-state", "still");
+                  }
+            }); 
+        }); //ajax then
     } //getIt()
 }; //gifolator object
 
 Gifolator.init();
 Gifolator.getIt("reaction");
+
