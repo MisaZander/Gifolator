@@ -1,6 +1,7 @@
 var Gifolator = {
     apikey: "cQ5mbtTfzO9Qc6BwVOxVldTQvzb97yGF",
     tags: ["cats", "dogs", "food", "reaction", "memes"],
+    offset: 0,
     init: function() {
         this.loadTags();
     },
@@ -58,5 +59,10 @@ var Gifolator = {
 }; //gifolator object
 
 Gifolator.init();
-//Gifolator.getIt("reaction");
-
+$("#submitTag").on("click", function(event) {
+    event.preventDefault();
+    let tag = $("#addTag").val();
+    $("#addTag").text("");
+    Gifolator.tags.push(tag);
+    Gifolator.loadTags();
+});
