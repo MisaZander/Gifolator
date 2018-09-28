@@ -32,14 +32,24 @@ var Gifolator = {
         }).then(function(response) {
             console.log(response);
             for(let i = 0; i < response.data.length; i++) {
+                let container = $("<div>");
                 let image = $("<img>");
+                let rating = $("<p>");
+
+                $(container).attr("class", "holder");
+
                 $(image).attr("src", response.data[i].images.fixed_height_still.url);
                 $(image).attr("alt", response.data[i].title);
                 $(image).attr("data-still", response.data[i].images.fixed_height_still.url);
                 $(image).attr("data-animate", response.data[i].images.fixed_height.url);
                 $(image).attr("data-state", "still");
                 $(image).attr("class", "gif");
-                $("#images").prepend(image);
+
+                $(rating).text("Rating: " + response.data[i].rating);
+
+                $(container).append(image);
+                $(container).append(rating);
+                $("#images").append(container);
             }
 
             $(".gif").on("click", function() {
