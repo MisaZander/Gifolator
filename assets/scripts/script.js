@@ -13,6 +13,12 @@ var Gifolator = {
             $(button).text(this.tags[i]);
             $("#tags").append(button);
         }
+
+        $(".gif-button").on("click", function() {
+            $(".gif-button").attr("class", "btn btn-primary gif-button");
+            $(this).attr("class", "btn btn-success gif-button");
+            Gifolator.getIt($(this).data("tag"));
+        });
     }, //loadTags()
     getIt: function(tag) {
         $("#images").empty();
@@ -52,5 +58,5 @@ var Gifolator = {
 }; //gifolator object
 
 Gifolator.init();
-Gifolator.getIt("reaction");
+//Gifolator.getIt("reaction");
 
