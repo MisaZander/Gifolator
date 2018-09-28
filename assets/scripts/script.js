@@ -24,7 +24,8 @@ var Gifolator = {
     getIt: function(tag) {
         $("#images").empty();
         let newTag = tag.replace(" ", "+");
-        let queryURL = "https://api.giphy.com/v1/gifs/search?api_key=" + this.apikey + "&q=" + newTag + "&limit=10";
+        let offset = this.obtainOffset() * 10;
+        let queryURL = "https://api.giphy.com/v1/gifs/search?api_key=" + this.apikey + "&q=" + newTag + "&limit=10&offset=" + offset;
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -55,14 +56,19 @@ var Gifolator = {
                   }
             }); 
         }); //ajax then
-    } //getIt()
+    }, //getIt()
+    obtainOffset: function() {
+        offset = this.offset;
+        this.offset++;
+        return offset;
+    }
 }; //gifolator object
 
 Gifolator.init();
 $("#submitTag").on("click", function(event) {
     event.preventDefault();
     let tag = $("#addTag").val();
-    $("#addTag").text("");
+    $("#addTag").val("");
     Gifolator.tags.push(tag);
     Gifolator.loadTags();
 });
