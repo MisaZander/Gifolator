@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Gifolator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/stylesheets/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/stylesheets/style.css" />
+    <script src="assets/scripts/jquery.min.js"></script>
+    <script src="assets/scripts/script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="h1 text-center">Gifolator</h1>
+        <p>So many gifs, so little time. Where to my brother?</p>
+        <div class="row">
+            <div class="col-12" id="tags">
+                <!--jQuery will dynamically add these BS buttons-->
+            </div>
+            <div class="col-12">
+                <form>
+                    <div class="form-group">
+                        <label for="addTag">Want to add a tag?</label>
+                        <input type="text" class="form-control" id="addTag" placeholder="Tag to add...">
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submitTag">Add tag</button>
+                </form>
+            </div>
+            <div class="col-xs-3 col-sm-4 col-md-6 col-lg-12" id="images">
+                <!-- jQuery will dynamically add images here -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
