@@ -2,6 +2,7 @@ var Gifolator = {
     apikey: "cQ5mbtTfzO9Qc6BwVOxVldTQvzb97yGF",
     tags: ["cats", "dogs", "food", "reaction", "memes"],
     offset: 0,
+    tag: "",
     init: function() {
         this.loadTags();
     },
@@ -18,18 +19,23 @@ var Gifolator = {
         $(".gif-button").on("click", function() {
             $(".gif-button").attr("class", "btn btn-primary gif-button");
             $(this).attr("class", "btn btn-success gif-button");
-            Gifolator.getIt($(this).data("tag"));
+            Gifolator.tag = $(this).data("tag");
+            Gifolator.getIt(true);
         });
     }, //loadTags()
-    getIt: function(tag) {
-        $("#images").empty();
-        let newTag = tag.replace(" ", "+");
+    getIt: function(empty) {
+        if(empty) {
+            $("#images").empty();
+        }
+        this.tag = this.tag.replace(" ", "+");
         let offset = this.obtainOffset() * 10;
-        let queryURL = "https://api.giphy.com/v1/gifs/search?api_key=" + this.apikey + "&q=" + newTag + "&limit=10&offset=" + offset;
+        let queryURL = "https://api.giphy.com/v1/gifs/search?api_key=" + this.apikey + "&q=" + this.tag + "&limit=10&offset=" + offset;
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function(response) {
+            console.log(this.tag);
+            console.log(queryURL);
             console.log(response);
             for(let i = 0; i < response.data.length; i++) {
                 let container = $("<div>");
@@ -51,6 +57,9 @@ var Gifolator = {
                 $(container).append(rating);
                 $("#images").append(container);
             }
+
+            $("#unoMas").prop("disabled", true);
+            $("#unoMas").removeAttr("disabled");
 
             $(".gif").on("click", function() {
                 var state = $(this).attr("data-state");
@@ -81,4 +90,9 @@ $("#submitTag").on("click", function(event) {
     $("#addTag").val("");
     Gifolator.tags.push(tag);
     Gifolator.loadTags();
+});
+
+$("#unoMas").on("click", function(event) {
+    event.preventDefault();
+    Gifolator.getIt(false);
 });
