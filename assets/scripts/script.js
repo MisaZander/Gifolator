@@ -34,9 +34,9 @@ var Gifolator = {
             url: queryURL,
             method: "GET"
         }).then(function(response) {
-            console.log(this.tag);
-            console.log(queryURL);
-            console.log(response);
+            //console.log(this.tag);
+            //console.log(queryURL);
+            //console.log(response);
             for(let i = 0; i < response.data.length; i++) {
                 let container = $("<div>");
                 let image = $("<img>");
@@ -63,7 +63,7 @@ var Gifolator = {
 
             $(".gif").on("click", function() {
                 var state = $(this).attr("data-state");
-                console.log(state);
+                //console.log(state);
                 if(state === "still") {
                     var data = $(this).data("animate");
                     $(this).attr("src", data);
